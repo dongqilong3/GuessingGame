@@ -1,0 +1,42 @@
+package guessingGame;
+
+import java.util.Random;
+
+public class RandomL {
+
+	public static char[] main(int a) {//随机一个char数组
+		char t[] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N',
+		'O','P','Q','R','S','T','U','V','W','X','Y','Z'};//总char长度26 0~25
+		int p1[] = new int[a];//随机出char数组对应的int 数组
+		for(int i=0;i<a;i++)
+		{
+			p1[i] = -1; //遍历数组，把-1填充进去
+		}
+		for(int i=0;i<a;i++)
+			{
+				if(i ==0)
+				{
+					Random rand = new Random();
+					p1[i] = rand.nextInt(26);
+				}
+				for(int j=0;j<i;j++)
+				{
+					if (p1[i] == p1[j]||p1[i] == -1)//当p1[i]==-1或者p1[i]==p1[j]时调用随机方法
+					{
+						do
+						{
+							Random rand = new Random();
+							p1[i] = rand.nextInt(26);
+						}while(p1[i] == p1[j]);//当有重复的时候就再随机，直到没有重复
+					}
+				}
+			}//p1[]已经全部赋值完毕并且没有重复
+		char p[] = new char[a];//随机出的char数组
+		for(int i=0;i<a;i++)
+		{
+			p[i] = t[p1[i]];//将char p[]中填入字母
+		}
+		return p;
+	}
+
+}

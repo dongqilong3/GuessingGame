@@ -1,0 +1,83 @@
+package guessingGame;
+
+import java.util.Scanner;
+
+public class Start {
+			public static void main(int a) {//循环比较数组
+				boolean flag = true;
+				int total = 500;//总分500分
+				int count = 1; //计算总次数
+				switch (a)
+				{
+				case 3:
+				{
+					System.out.println("GuessingGame>游戏开始，请输入你所猜的三个字母序列(exit---退出)");
+				}
+				case 4:
+				{
+					System.out.println("GuessingGame>游戏开始，请输入你所猜的四个字母序列(exit---退出)");
+				}
+				case 5:
+				{
+					System.out.println("GuessingGame>游戏开始，请输入你所猜的五个字母序列(exit---退出)");
+				}
+				}
+				char In[] = new char[a];
+				Scanner scan = new Scanner(System.in);
+				String Input = scan.next();//输入的值赋给字符串
+				RandomL f = new RandomL();
+				char p[] = f.main(a);//随机出的char
+				if (Input.equals("exit"))
+				{
+					flag = false;
+					System.out.println("GuessingGame>游戏结束！不要灰心！下次继续！");
+				}
+				while (flag == true)
+				{
+					In = Input.toCharArray();//将String转化为char
+					if (Input.equals("exit"))
+					{
+						flag = false;
+						System.out.println("GuessingGame>游戏结束！不要灰心！下次继续");
+						break;
+					}
+					if(In == p)//如果相等就输出游戏结束，返回false
+					{
+						flag =false;
+						System.out.println("GuessingGame>天糊！瞬间爆炸！你真是人品帝！你的得分是500！！！！！");
+						break;
+					}
+					else
+					{
+						int a1 = 0,a2 = 0;//a1代表位置和字母都正确，a2代表只有字母正确
+						for(int i=0;i<a;i++)
+						{
+							for(int j=0;j<a;j++)
+							{
+								if(In[i] == p[j])
+								{
+									++a2;//只有字母正确
+									if(i == j)
+									{
+										++a1;// 字母位置都正确
+									}
+								}
+							}
+						}//遍历一边
+						System.out.println("GuessingGame>你猜对"+a2+"个字符，其中"+a1+"个字符位置正确！(总次数="+count+"，exit---退出)");
+						count++;
+						if(a1 == a)
+						{
+							flag = true;
+							break;
+						}
+						total = total - 10;
+						Input = scan.next();
+						In = Input.toCharArray();//重新输入
+					}
+				}
+				if(flag == true)
+				System.out.println("GuessingGame>恭喜你猜对了这个字符串，游戏结束！你的得分为："+total);
+				scan.close();
+			}
+		}

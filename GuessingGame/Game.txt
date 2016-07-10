@@ -1,0 +1,35 @@
+package guessingGame;
+import java.util.Scanner;
+
+public class Game {//主方法
+	public static void main(String[] args)
+	{
+		int Difficulty;//难度系数
+		System.out.println("GuessingGame>欢迎尝试猜字母游戏!");
+		System.out.println("GuessingGame>请输入游戏级别（3、4、5）？");
+		Scanner scan = new Scanner(System.in);
+		Difficulty = scan.nextInt();//读取难度系数
+		switch (Difficulty)
+		{
+		case 3:
+		{
+			System.out.println("GuessingGame>你选择的是难度★★★");
+			Start.main(Difficulty);
+			break;
+		}
+		case 4:
+		{
+			System.out.println("GuessingGame>你选择的是难度★★★★");
+			Start.main(Difficulty);//难度四
+			break;
+		}
+		case 5:
+		{
+			System.out.println("GuessingGame>你选择的是难度★★★★★");
+			Start.main(Difficulty);//难度五
+			break;
+		}
+		}
+		scan.close();
+	}
+}
